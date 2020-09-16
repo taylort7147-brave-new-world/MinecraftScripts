@@ -1,5 +1,5 @@
-require("./turtle/Inventory")
-require("./turtle/Events")
+require("turtle.Inventory")
+require("turtle.Events")
 local inspect = require('inspect')
 ItemSelected:subscribe(function(sender, data)
     print('item was selected!!!', data, sender)
