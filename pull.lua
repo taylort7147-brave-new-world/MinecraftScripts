@@ -20,7 +20,7 @@ local fileList = {
 }
 local x, y = term.getSize()
 local headers = {
-    ["Cache-Control"] = "max-age=0, private, must-revalidate"
+    ["Cache-Control"] = "max-age=0, private, must-revalidate, no-store, no-cache, public, proxy-revalidate"
 }
 -- GUI
 function printTitle()
