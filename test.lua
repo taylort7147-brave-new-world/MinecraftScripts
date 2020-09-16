@@ -1,6 +1,6 @@
 local Utils = {}
 
-local usefulBlocks = {'Lava'}
+local usefulBlocks = {'minecraft:lava'}
 
 local heading = 1
 local x = 0
@@ -135,9 +135,9 @@ function HandleUsefulBlock(block)
     end
 
     print("Handing useful block ", block.name)
-    if (block.name == "Lava") then
-        if (not SelectItem("Bucket")) then
-            print("no empty bucket for laval :(")
+    if (block.name == "minecraft:lava") then
+        if (not SelectItem("minecraft:bucket")) then
+            print("no empty bucket for lava :(")
             return
         end
         turtle.place()
