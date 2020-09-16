@@ -142,8 +142,11 @@ end
 
 function ExamineBlocks()
     function useBlock(block)
-        if (block and usefulBlocks[block.name]) then
-            HandleUsefulBlock(block)
+        if (block) then
+            print("checking if ", block.name, " is useful")
+            if (usefulBlocks[block.name]) then
+                HandleUsefulBlock(block)
+            end
         end
     end
 
