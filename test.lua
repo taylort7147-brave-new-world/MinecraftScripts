@@ -1,5 +1,7 @@
 local Utils = {}
 
+local usefulBlocks = {'Lava'}
+
 local heading = 1
 local x = 0
 local y = 0
@@ -95,6 +97,17 @@ function AdjustCoordinateXY()
     end
 end
 
+function SelectItem(name)
+    for i = 1, 16, 1 do
+        local item = turtle.getItemDetail(i)
+        if (item and item.name == name) then
+            turtle.select(i)
+            return true
+        end
+    end
+    return false
+end
+
 function Refuel()
     for i = 1, 16, 1 do
         local currentFuel = turtle.getFuelLevel()
@@ -108,6 +121,39 @@ function Refuel()
         end
     end
     print("No fuel in inventory.")
+end
+
+function HandleUsefulBlock(block)
+    if (not block or not usefulBlocks[block.name]) then
+        return
+    end
+
+    print("Handing useful block ", block.name)
+    if (block.name == "Lava") then
+        if (not SelectItem("Bucket")) then
+            print("no empty bucket for laval :(")
+            return
+        end
+        turtle.place()
+        turtle.placeUp()
+        turtle.placeDown()
+    end
+end
+
+function ExamineBlocks()
+    function useBlock(block)
+        if (block and usefulBlocks[block.name]) then
+            HandleUsefulBlock(block)
+        end
+    end
+
+    local frontBlock = turtle.inspect()
+    local upBlock = turtle.inspectUp()
+    local downBlock = turtle.inspectDown()
+
+    useBlock(frontBlock)
+    useBlock(upBlock)
+    useBlock(downBlock)
 end
 
 function WalkToWall()
