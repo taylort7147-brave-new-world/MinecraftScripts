@@ -95,6 +95,8 @@ end
 function Dig()
     while (true) do
         if (not turtle.dig()) then
+            turtle.digDown()
+            turtle.digUp()
             break
         end
     end
