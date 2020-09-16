@@ -88,6 +88,7 @@ function getGithubContents(path)
     local pType, pPath, pName, checkPath = {}, {}, {}, {}
     local url = "https://api.github.com/repos/" .. gUser .. "/" .. gRepo .. "/contents/" .. path .. "/?ref=" .. gBranch
     local response = http.get(url)
+    print(url)
     writeCenter(url)
     if response then
         response = response.readAll()
