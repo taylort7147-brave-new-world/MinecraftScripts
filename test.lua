@@ -157,7 +157,7 @@ function ExamineBlocks()
             print("checking if ", blockName, " is useful")
             if (usefulBlocks[blockName]) then
                 print("Looks like it is!")
-                HandleUsefulBlock(block)
+                HandleUsefulBlock(blockName)
             end
         end
     end
