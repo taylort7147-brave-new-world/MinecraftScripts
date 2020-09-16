@@ -202,5 +202,5 @@ else
             tArgs[i] = nil
         end
     end
-    parseInput('dkapellusch','MinecraftScripts', '/', tArgs[4], tArgs[5])
+    parseInput('dkapellusch','MinecraftScripts', '/', ".", "master")
 end
