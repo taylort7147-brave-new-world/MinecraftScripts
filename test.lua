@@ -106,7 +106,7 @@ function AdjustCoordinateXY()
 end
 
 function SelectItem(name)
-    print("trying to select" name)
+    print("trying to select", name)
     name = string.gsub(name, "%s+", "")
     for i = 1, 16, 1 do
         local item = turtle.getItemDetail(i)
@@ -117,7 +117,7 @@ function SelectItem(name)
             end
         end
     end
-    print("failed to select " name)
+    print("failed to select ", name)
     return false
 end
 
