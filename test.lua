@@ -106,11 +106,14 @@ function AdjustCoordinateXY()
 end
 
 function SelectItem(name)
+    name = string.gsub(name, "%s+", "")
     for i = 1, 16, 1 do
         local item = turtle.getItemDetail(i)
-        if (item and item.name == name) then
-            turtle.select(i)
-            return true
+        if (item and item.name) then
+            if (string.gsub(item.name, "%s+", "") == name) then
+                turtle.select(i)
+                return true
+            end
         end
     end
     return false
