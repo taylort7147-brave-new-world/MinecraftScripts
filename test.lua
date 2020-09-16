@@ -34,6 +34,7 @@ function Forward()
         })
         AdjustCoordinate()
     end
+    return moved
 end
 
 function Backward()
@@ -45,6 +46,7 @@ function Backward()
         })
         AdjustCoordinate()
     end
+    return moved
 end
 
 function AdjustCoordinate()
@@ -55,17 +57,23 @@ function AdjustCoordinate()
     end
 
     local magnitude = multipiler * lastStep.heading
-    if(lastStep.heading == 1) then x = x + magnitude end
-    if(lastStep.heading == 3) then x = x - magnitude end
-    if(lastStep.heading == 4) then y = y + magnitude end
-    if(lastStep.heading == 2) then y = y - magnitude end
+    if (lastStep.heading == 1) then
+        x = x + magnitude
+    end
+    if (lastStep.heading == 3) then
+        x = x - magnitude
+    end
+    if (lastStep.heading == 4) then
+        y = y + magnitude
+    end
+    if (lastStep.heading == 2) then
+        y = y - magnitude
+    end
 end
 function Refuel()
-    print("Trying to refuel.")
     for i = 1, 16, 1 do
         local currentFuel = turtle.getFuelLevel()
         if (currentFuel > 0) then
-            print("Have fuel.")
             return
         end
         turtle.refuel(i)
@@ -76,8 +84,7 @@ end
 function WalkToWall()
     while (true) do
         Refuel()
-        if (not turtle.forward()) then
-            print("Cannot move.")
+        if (not Forward()) then
             return
         end
         print(x, y, z)
@@ -85,8 +92,11 @@ function WalkToWall()
 end
 
 function Dig()
-    while (turtle.dig()) do
+    while (true) do
         print(turtle.inspect())
+        if (not turtle.dig()) then
+            break
+        end
     end
 end
 
