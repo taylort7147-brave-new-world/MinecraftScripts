@@ -32,7 +32,7 @@ function Forward()
             step = "forward",
             heading = heading
         })
-        AdjustCoordinate()
+        AdjustCoordinateXY()
     end
     return moved
 end
@@ -44,12 +44,36 @@ function Backward()
             step = "backward",
             heading = heading
         })
-        AdjustCoordinate()
+        AdjustCoordinateXY()
     end
     return moved
 end
 
-function AdjustCoordinate()
+function Up()
+    local moved = turtle.up()
+    if (moved) then
+        table.insert(stepsTaken, {
+            step = "up",
+            heading = heading
+        })
+        z = z + 1
+    end
+    return moved
+end
+
+function Down()
+    local moved = turtle.down()
+    if (moved) then
+        table.insert(stepsTaken, {
+            step = "down",
+            heading = heading
+        })
+        z = z - 1
+    end
+    return moved
+end
+
+function AdjustCoordinateXY()
     local lastStep = stepsTaken[#stepsTaken]
     local magnitude = 1
     if (lastStep["step"] == "backward") then
@@ -96,7 +120,7 @@ function WalkToWall()
     end
 end
 
-function Dig()∏fo
+function Dig()
     while (true) do
         if (not turtle.dig()) then
             turtle.digDown()
