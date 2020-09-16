@@ -56,7 +56,6 @@ function AdjustCoordinate()
         multiplier = -1
     end
 
-    print(lastStep["heading"], lastStep["step"])
     local magnitude = multipiler * lastStep["heading"]
     if (lastStep["heading"] == 1) then
         x = x + magnitude
@@ -89,6 +88,7 @@ function WalkToWall()
         if (not Forward()) then
             return
         end
+        print(x, y, z)
     end
 end
 
@@ -117,14 +117,10 @@ Right()
 
 print(#stepsTaken)
 for i = 1, #stepsTaken, 1 do
+    print(x, y, z)
     Forward()
     Dig()
 end
 
 Left()
 Left()
-
-print(x, y, z)
-for k, v in pairs(stepsTaken) do
-    print(k, v[1], v[2])
-end
