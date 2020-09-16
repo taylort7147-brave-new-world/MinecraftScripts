@@ -50,6 +50,7 @@ function Backward()
 end
 
 function AdjustCoordinate()
+    print(#stepsTaken)
     local lastStep = stepsTaken[#stepsTaken]
     local multipiler = 1
     if (lastStep["step"] == "backward") then
