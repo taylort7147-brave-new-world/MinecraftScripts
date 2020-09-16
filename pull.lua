@@ -179,6 +179,7 @@ function parseInput(user, repo, dldir, path, branch)
         gBranch = branch
     end
     if repo == nil then
+        printUsage()
     else
         gUser = user
         gRepo = repo
@@ -200,7 +201,5 @@ else
             tArgs[i] = nil
         end
     end
-    parseInput(tArgs[1], tArgs[2], tArgs[3], tArgs[4], tArgs[5])
+    parseInput('dkapellusch','MinecraftScripts', 'MinecraftScripts', tArgs[4], tArgs[5])
 end
-
-parseInput('dkapellusch', 'MinecraftScripts', 'MinecraftScripts')
