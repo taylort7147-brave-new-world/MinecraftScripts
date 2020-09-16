@@ -149,6 +149,7 @@ end
 function ExamineBlocks()
     function useBlock(block)
         if (block) then
+            print("checking if ", block.name, " is useful")
             local blockName = string.gsub(block.name, "%s+", "")
             if(not blockName) then return end
             print("checking if ", blockName, " is useful")
