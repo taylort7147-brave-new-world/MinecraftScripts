@@ -1,1 +1,1 @@
-shell.run("/downloads/clone.lua dkapellusch MinecraftScripts");
+shell.run("/downloads/MinecraftScripts/clone.lua dkapellusch MinecraftScripts");
