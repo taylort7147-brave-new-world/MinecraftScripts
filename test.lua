@@ -198,7 +198,7 @@ function DigNByK(n, k)
 end
 
 for i = 1, 16, 1 do
-    WalkToWall()
+    Forward()
     Dig()
 end
 
