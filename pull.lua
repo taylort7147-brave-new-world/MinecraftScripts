@@ -20,7 +20,7 @@ local fileList = {
 }
 local x, y = term.getSize()
 local headers = {
-    ["Cache-Control"] = "no-store" -- Overrides the default User-Agent.
+    ["Cache-Control"] = "max-age=0, private, must-revalidate"
 }
 -- GUI
 function printTitle()
@@ -87,7 +87,7 @@ end
 function getGithubContents(path)
     local pType, pPath, pName, checkPath = {}, {}, {}, {}
     local url = "https://api.github.com/repos/" .. gUser .. "/" .. gRepo .. "/contents/" .. path .. "/?ref=" .. gBranch
-    local response = http.get(url)
+    local response = http.get(url, headers)
     sleep(.1)
     if response then
         response = response.readAll()
@@ -201,5 +201,5 @@ else
             tArgs[i] = nil
         end
     end
-    parseInput('dkapellusch','MinecraftScripts', '/', ".", "master")
+    parseInput('dkapellusch', 'MinecraftScripts', '/', ".", "master")
 end
