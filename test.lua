@@ -1,6 +1,8 @@
 local Utils = {}
 
-local usefulBlocks = {"minecraft:lava"}
+local usefulBlocks = {
+    ["minecraft:lava"] = "minecraft:lava"
+}
 
 local heading = 1
 local x = 0
@@ -148,12 +150,11 @@ end
 
 function ExamineBlocks()
     function useBlock(block)
-        if (block) then
-            print("checking if ", block.name, " is useful")
+        if (block and block.name) then
             local blockName = string.gsub(block.name, "%s+", "")
-            if(not blockName) then return end
             print("checking if ", blockName, " is useful")
             if (usefulBlocks[blockName]) then
+                print("Looks like it is!")
                 HandleUsefulBlock(block)
             end
         end
