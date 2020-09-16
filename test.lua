@@ -80,6 +80,7 @@ function WalkToWall()
             print("Cannot move.")
             return
         end
+        print(x, y, z)
     end
 end
 
