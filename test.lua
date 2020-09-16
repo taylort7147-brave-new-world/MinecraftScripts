@@ -28,7 +28,7 @@ end
 function Forward()
     local moved = turtle.forward()
     if (moved) then
-        stepsTaken.insert({
+        table.insert(stepsTaken, {
             step = "forward",
             heading = heading
         })
@@ -40,7 +40,7 @@ end
 function Backward()
     local moved = turtle.back()
     if (moved) then
-        stepsTaken.insert({
+        table.insert(stepsTaken, {
             step = "backward",
             heading = heading
         })
