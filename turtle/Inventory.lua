@@ -19,7 +19,7 @@ function Inventory:GetItems()
         local item = turtle.getItemDetail(i)
         if (item) then
             item['priority'] = self.priority[item.name] or 0
-            talbetable.insert(items, item)
+            table.insert(items, item)
         end
     end
     return items
