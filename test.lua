@@ -56,7 +56,7 @@ function AdjustCoordinate()
         multiplier = -1
     end
 
-    print(lastStep)
+    print(lastStep.heading, lastStep.step)
     local magnitude = multipiler * lastStep.heading
     if (lastStep.heading == 1) then
         x = x + magnitude
@@ -116,6 +116,7 @@ end
 Right()
 Right()
 
+print(#stepsTaken)
 for i = 1, #stepsTaken, 1 do
     WalkToWall()
     Dig()
