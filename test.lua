@@ -74,15 +74,13 @@ end
 function Refuel()
     for i = 1, 16, 1 do
         local currentFuel = turtle.getFuelLevel()
-        -- if (currentFuel > 0) then
-        --     return
-        -- end
+        if (currentFuel > 0) then
+            return
+        end
         local item = turtle.getItemDetail(i)
         if (item) then
-            print(item["name"])
-            if (turtle.refuel(i)) then
-                return
-            end
+            turtle.select(i)
+            turtle.refuel(i)
         end
     end
     print("No fuel in inventory.")
@@ -98,7 +96,7 @@ function WalkToWall()
     end
 end
 
-function Dig()
+function Dig()∏fo
     while (true) do
         if (not turtle.dig()) then
             turtle.digDown()
