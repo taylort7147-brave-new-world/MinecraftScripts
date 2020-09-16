@@ -202,5 +202,7 @@ else
         end
     end
     shell.run("delete /MinecraftScripts")
+    shell.run("delete /startup/pull.lua")
+    shell.run("wget https://raw.githubusercontent.com/dkapellusch/MinecraftScripts/master/pull.lua /startup/pull.lua")
     parseInput('dkapellusch', 'MinecraftScripts', '/', ".", "master")
 end
