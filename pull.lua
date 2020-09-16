@@ -20,7 +20,7 @@ local fileList = {
 }
 local x, y = term.getSize()
 local headers = {
-    ["Cache-Control"] = "max-age=0, private, must-revalidate, no-store, no-cache, public, proxy-revalidate"
+    ["Cache-Control"] = "max-age=0, private, must-revalidate, no-store"
 }
 -- GUI
 function printTitle()
@@ -78,7 +78,6 @@ function downloadFile(path, url, name)
         fs.makeDir(dirPath)
     end
     local content = http.get(url, headers)
-    sleep(.1)
     local file = fs.open(path, "w")
     file.write(content.readAll())
     file.close()
@@ -129,7 +128,6 @@ function downloadManager(path)
             checkPath = http.get(
                             "https://raw.github.com/" .. gUser .. "/" .. gRepo .. "/" .. gBranch .. "/" .. fPath[i],
                             headers)
-            sleep(.1)
             if checkPath == nil then
                 fPath[i] = fPath[i] .. "/" .. fName[i]
             end
