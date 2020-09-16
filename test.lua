@@ -94,7 +94,6 @@ end
 
 function Dig()
     while (true) do
-        print(turtle.inspect())
         if (not turtle.dig()) then
             break
         end
