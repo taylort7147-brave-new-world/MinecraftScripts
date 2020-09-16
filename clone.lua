@@ -71,7 +71,9 @@ end
 -- Get Directory Contents
 function getGithubContents( path )
 	local pType, pPath, pName, checkPath = {}, {}, {}, {}
-	local response = http.get("https://api.github.com/repos/"..gUser.."/"..gRepo.."/contents/"..path.."/?ref="..gBranch)
+	local url = "https://api.github.com/repos/"..gUser.."/"..gRepo.."/contents/"..path.."/?ref="..gBranch
+	local response = http.get(url)
+	writeCenter(url)
 	if response then
 		response = response.readAll()
 		if response ~= nil then

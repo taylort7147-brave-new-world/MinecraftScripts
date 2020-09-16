@@ -51,12 +51,11 @@ end
 
 function AdjustCoordinate()
     local lastStep = stepsTaken[#stepsTaken]
-    local multipiler = 1
+    local magnitude = 1
     if (lastStep["step"] == "backward") then
-        multiplier = -1
+        magnitude = -1
     end
 
-    local magnitude = multipiler * lastStep["heading"]
     print(magnitude)
     if (lastStep["heading"] == 1) then
         x = x + magnitude
