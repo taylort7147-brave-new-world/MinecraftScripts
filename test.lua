@@ -115,7 +115,7 @@ end
 Right()
 Right()
 
-for i = 1, 16, 1 do
+for i = 1, #stepsTaken, 1 do
     WalkToWall()
     Dig()
 end
