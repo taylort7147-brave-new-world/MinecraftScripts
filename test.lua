@@ -1,6 +1,6 @@
 local Utils = {}
 
-local usefulBlocks = {'minecraft:lava'}
+local usefulBlocks = {"minecraft:lava"}
 
 local heading = 1
 local x = 0
@@ -129,13 +129,13 @@ function Refuel()
     print("No fuel in inventory.")
 end
 
-function HandleUsefulBlock(block)
-    if (not block or not usefulBlocks[block.name]) then
+function HandleUsefulBlock(blockName)
+    if (not blockName or not usefulBlocks[blockName]) then
         return
     end
 
-    print("Handing useful block ", block.name)
-    if (block.name == "minecraft:lava") then
+    print("Handing useful block ", blockName)
+    if (blockName == "minecraft:lava") then
         if (not SelectItem("minecraft:bucket")) then
             print("no empty bucket for lava :(")
             return
@@ -149,8 +149,9 @@ end
 function ExamineBlocks()
     function useBlock(block)
         if (block) then
-            print("checking if ", block.name, " is useful")
-            if (usefulBlocks[block.name]) then
+            local blockName = string.gsub(block.name, "%s+", "")
+            print("checking if ", blockName, " is useful")
+            if (usefulBlocks[blockName]) then
                 HandleUsefulBlock(block)
             end
         end
