@@ -1,4 +1,4 @@
-require("../Event")
+require("Event")
 
 Moved = Event:new("Moved")
 Rotated = Event:new("Rotated")
