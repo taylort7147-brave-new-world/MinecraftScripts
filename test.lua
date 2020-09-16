@@ -15,6 +15,7 @@ function Left()
     if heading < 1 then
         heading = heading + 4
     end
+    ExamineBlocks()
     return heading
 end
 
@@ -24,6 +25,7 @@ function Right()
     if heading > 4 then
         heading = heading - 4
     end
+    ExamineBlocks()
     return heading
 end
 
@@ -35,6 +37,7 @@ function Forward()
             heading = heading
         })
         AdjustCoordinateXY()
+        ExamineBlocks()
     end
     return moved
 end
@@ -47,6 +50,7 @@ function Backward()
             heading = heading
         })
         AdjustCoordinateXY()
+        ExamineBlocks()
     end
     return moved
 end
@@ -59,6 +63,7 @@ function Up()
             heading = heading
         })
         z = z + 1
+        ExamineBlocks()
     end
     return moved
 end
@@ -71,6 +76,7 @@ function Down()
             heading = heading
         })
         z = z - 1
+        ExamineBlocks()
     end
     return moved
 end
