@@ -91,7 +91,6 @@ function AdjustCoordinateXY()
         magnitude = -1
     end
 
-    print(magnitude)
     if (lastStep["heading"] == 1) then
         x = x + magnitude
     end
@@ -179,7 +178,6 @@ function WalkToWall()
         if (not Forward()) then
             return
         end
-        print(x, y, z)
     end
 end
 
