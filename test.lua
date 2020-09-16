@@ -56,6 +56,7 @@ function AdjustCoordinate()
         multiplier = -1
     end
 
+    print(lastStep)
     local magnitude = multipiler * lastStep.heading
     if (lastStep.heading == 1) then
         x = x + magnitude
@@ -88,7 +89,6 @@ function WalkToWall()
         if (not Forward()) then
             return
         end
-        print(x, y, z)
     end
 end
 
