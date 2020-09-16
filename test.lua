@@ -156,9 +156,9 @@ function ExamineBlocks()
         end
     end
 
-    local frontBlock = turtle.inspect()
-    local upBlock = turtle.inspectUp()
-    local downBlock = turtle.inspectDown()
+    local _, frontBlock = turtle.inspect()
+    local _, upBlock = turtle.inspectUp()
+    local _, downBlock = turtle.inspectDown()
 
     useBlock(frontBlock)
     useBlock(upBlock)
