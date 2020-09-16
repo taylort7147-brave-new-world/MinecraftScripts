@@ -77,6 +77,7 @@ function Refuel()
         if (currentFuel > 0) then
             return
         end
+        print(turtle.getItemDetail(i))
         turtle.refuel(i)
     end
     print("No fuel in inventory.")
