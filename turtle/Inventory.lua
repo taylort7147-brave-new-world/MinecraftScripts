@@ -29,7 +29,7 @@ function Inventory:SelectByName(itemName)
     if (not itemName) then
         return nil
     end
-    for i, v in pairs(self.GetItems()) do
+    for i, v in pairs(self:GetItems()) do
         if (v.name:match(itemName)) then
             turtle.select(i)
             ItemSelected:raise(self, v)
@@ -43,7 +43,7 @@ function Inventory:SelectByIndex(index)
         return nil
     end
 
-    for i, v in pairs(self.GetItems()) do
+    for i, v in pairs(self:GetItems()) do
         if (i == index) then
             turtle.select(i)
             ItemSelected:raise(self, v)
