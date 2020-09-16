@@ -198,5 +198,10 @@ if not http then
     term.clear()
     term.setCursorPos(1, 1)
 else
+    for i = 1, 5, 1 do
+        if tArgs[i] == "." then
+            tArgs[i] = nil
+        end
+    end
     parseInput('dkapellusch', 'MinecraftScripts', '/', ".", "master")
 end
