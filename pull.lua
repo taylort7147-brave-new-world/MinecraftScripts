@@ -198,10 +198,7 @@ if not http then
     term.clear()
     term.setCursorPos(1, 1)
 else
-    for i = 1, 5, 1 do
-        if tArgs[i] == "." then
-            tArgs[i] = nil
-        end
-    end
+    shell.run("delete /startup/pull.lua")
+    shell.run("wget https://raw.githubusercontent.com/dkapellusch/MinecraftScripts/master/pull.lua")
     parseInput('dkapellusch', 'MinecraftScripts', '/', ".", "master")
 end
