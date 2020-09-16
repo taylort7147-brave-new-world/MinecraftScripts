@@ -57,6 +57,7 @@ function AdjustCoordinate()
     end
 
     local magnitude = multipiler * lastStep["heading"]
+    print(magnitude)
     if (lastStep["heading"] == 1) then
         x = x + magnitude
     end
