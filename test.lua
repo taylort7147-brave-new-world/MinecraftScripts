@@ -1,5 +1,6 @@
-require("turtle.Inventory")
-require("turtle.Events")
+package.path = package.path .. ";../?.lua"
+require("turtle/Inventory")
+require("turtle/Events")
 local inspect = require('inspect')
 ItemSelected:subscribe(function(sender, data)
     print('item was selected!!!', data, sender)
