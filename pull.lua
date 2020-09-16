@@ -179,7 +179,6 @@ function parseInput(user, repo, dldir, path, branch)
         gBranch = branch
     end
     if repo == nil then
-        printUsage()
     else
         gUser = user
         gRepo = repo
