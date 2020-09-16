@@ -50,7 +50,6 @@ function Backward()
 end
 
 function AdjustCoordinate()
-    print(#stepsTaken)
     local lastStep = stepsTaken[#stepsTaken]
     local multipiler = 1
     if (lastStep["step"] == "backward") then
@@ -62,13 +61,13 @@ function AdjustCoordinate()
     if (lastStep["heading"] == 1) then
         x = x + magnitude
     end
-    if (lastStep["heading"]  == 3) then
+    if (lastStep["heading"] == 3) then
         x = x - magnitude
     end
-    if (lastStep["heading"]  == 4) then
+    if (lastStep["heading"] == 4) then
         y = y + magnitude
     end
-    if (lastStep["heading"]  == 2) then
+    if (lastStep["heading"] == 2) then
         y = y - magnitude
     end
 end
@@ -118,7 +117,7 @@ Right()
 
 print(#stepsTaken)
 for i = 1, #stepsTaken, 1 do
-    WalkToWall()
+    Forward()
     Dig()
 end
 
