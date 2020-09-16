@@ -52,22 +52,22 @@ end
 function AdjustCoordinate()
     local lastStep = stepsTaken[#stepsTaken]
     local multipiler = 1
-    if (lastStep.step == "backward") then
+    if (lastStep["step"] == "backward") then
         multiplier = -1
     end
 
-    print(lastStep.heading, lastStep.step)
-    local magnitude = multipiler * lastStep.heading
-    if (lastStep.heading == 1) then
+    print(lastStep["heading"], lastStep["step"])
+    local magnitude = multipiler * lastStep["heading"]
+    if (lastStep["heading"] == 1) then
         x = x + magnitude
     end
-    if (lastStep.heading == 3) then
+    if (lastStep["heading"]  == 3) then
         x = x - magnitude
     end
-    if (lastStep.heading == 4) then
+    if (lastStep["heading"]  == 4) then
         y = y + magnitude
     end
-    if (lastStep.heading == 2) then
+    if (lastStep["heading"]  == 2) then
         y = y - magnitude
     end
 end
