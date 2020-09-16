@@ -70,6 +70,7 @@ function AdjustCoordinate()
         y = y - magnitude
     end
 end
+
 function Refuel()
     for i = 1, 16, 1 do
         local currentFuel = turtle.getFuelLevel()
