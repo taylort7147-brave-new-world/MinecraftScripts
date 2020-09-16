@@ -201,5 +201,6 @@ else
             tArgs[i] = nil
         end
     end
+    shell.run("delete /MinecraftScripts")
     parseInput('dkapellusch', 'MinecraftScripts', '/', ".", "master")
 end
