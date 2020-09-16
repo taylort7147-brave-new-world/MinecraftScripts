@@ -1,8 +1,11 @@
-require("Event")
-
-local e = Event:new("test")
-e:subscribe(function(type, data)
-    print("got some data", type, data)
+require("./turtle/Inventory")
+require("./turtle/Events")
+local inspect = require('inspect')
+ItemSelected:subscribe(function(sender, data)
+    print('item was selected!!!', data, sender)
 end)
 
-e:raise('tested', 'hi')
+local inventory = Inventory:new()
+local items = inventory:GetItems()
+print(inspect {inventory})
+print(inspect {items})
