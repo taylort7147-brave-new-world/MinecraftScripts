@@ -99,7 +99,7 @@ function Inventory:PickUpItem(itemName)
         if (turtle.suck()) then
             local currentSlot = turtle.getSelectedSlot()
             local pickedUpItem = self:SelectByIndex(currentSlot)
-            if (pickedUpItem:match(itemName)) then
+            if (pickedUpItem and pickedUpItem.name:match(itemName)) then
                 foundAtLeastOne = true
                 ItemPickedUp:raise(self, pickedUpItem)
             else
