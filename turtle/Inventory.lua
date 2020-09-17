@@ -69,10 +69,9 @@ function Inventory:DropSlot(slot, amount)
     if (not slot) then
         return nil
     end
-
     local selectedItem = self:SelectByIndex(slot)
     if (selectedItem) then
-        turtle.dropDown(amount)
+        turtle.drop(amount)
         ItemDropped:raise(self, selectedItem)
     end
     return selectedItem
@@ -82,20 +81,13 @@ function Inventory:ChangeSlot(fromIndex, toIndex)
     if (not fromIndex or not toIndex) then
         return nil
     end
-
-    local droppedItem = self:DropSlot(fromIndex)
-    if (droppedItem) then
-        turtle.select(toIndex)
-        if (self:PickUpItem(droppedItem.name)) then
-            return true
-        end
-    end
-    return false
+    self:SelectByIndex(fromIndex)
+    turtle.transferTo(toIndex)
 end
 
 function Inventory:PickUpItem(itemName)
     local foundAtLeastOne = false
-    for i = 0, 64, 1 do
+    for i = 0, 3, 1 do
         if (turtle.suck()) then
             local currentSlot = turtle.getSelectedSlot()
             local pickedUpItem = self:SelectByIndex(currentSlot)
@@ -105,10 +97,16 @@ function Inventory:PickUpItem(itemName)
             else
                 self:DropSlot(currentSlot)
             end
+        else
+            if (not turtle.foward()) then
+                break
+            end
         end
+
     end
     return foundAtLeastOne
 end
+
 return {
     Inventory = Inventory
 }
