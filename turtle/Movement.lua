@@ -89,23 +89,23 @@ function Movement:Down()
 end
 
 function Movement:__adjustCoordinateXY()
-    local lastStep = stepsTaken[#stepsTaken]
+    local lastStep = self.stepsTaken[#self.stepsTaken]
     local magnitude = 1
     if (lastStep["step"] == "backward") then
         magnitude = -1
     end
 
     if (lastStep["heading"] == 1) then
-        x = x + magnitude
+        self.x = self.x + magnitude
     end
     if (lastStep["heading"] == 3) then
-        x = x - magnitude
+        self.x = self.x - magnitude
     end
     if (lastStep["heading"] == 4) then
-        y = y + magnitude
+        self.y = self.y + magnitude
     end
     if (lastStep["heading"] == 2) then
-        y = y - magnitude
+        self.y = self.y - magnitude
     end
     Moved:raise(self, lastStep)
 end
