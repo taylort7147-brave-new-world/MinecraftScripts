@@ -4,20 +4,12 @@ require("turtle/Inventory")
 require("turtle/Movement")
 require("turtle/Events")
 
-local inspect = require('inspect')
-ItemSelected:subscribe(function(sender, data)
-    print('item was selected!!!', inspect(data), sender)
-end)
-
 local inventory = Inventory:new()
 local movement = Movement:new()
-local items = inventory:GetItems()
-print(inspect(inventory))
-print(inspect(items))
 
-inventory:SelectByName("bucket")
-print(inventory:ChangeSlot(1, 15))
-Moved:subscribe(function(movement, step)
-    print(inspect(movement))
-end)
-movement:Forward()
+for i = 0, 200, 1 do
+    movement:Forward()
+    print(movement.x, movement.y, movement.z, movement.heading)
+    movement:BackWard()
+    print(movement.x, movement.y, movement.z, movement.heading)
+end

@@ -42,7 +42,7 @@ function Movement:Forward()
             heading = self.heading
         }
         table.insert(self.stepsTaken, step)
-        Moved:raise(self, step)
+        self:__adjustCoordinateXY()
     end
     return moved
 end
@@ -55,7 +55,7 @@ function Movement:Backward()
             heading = heading
         }
         table.insert(self.stepsTaken, step)
-        Moved:raise(self, step)
+        self:__adjustCoordinateXY()
     end
     return moved
 end
@@ -68,8 +68,8 @@ function Movement:Up()
             heading = heading
         }
         table.insert(self.stepsTaken, step)
-        Moved:raise(self, step)
         self.z = self.z + 1
+        Moved(self, step)
     end
     return moved
 end
@@ -82,29 +82,50 @@ function Movement:Down()
             heading = heading
         }
         table.insert(self.stepsTaken, step)
-        Moved:raise(self, step)
         self.z = self.z - 1
+        Moved(self, step)
     end
     return moved
 end
 
-Moved:subscribe(function(movement, step) 
-    local lastStep = movement.stepsTaken[#movement.stepsTaken]
+function Movement:__adjustCoordinateXY()
+    local lastStep = stepsTaken[#stepsTaken]
     local magnitude = 1
     if (lastStep["step"] == "backward") then
         magnitude = -1
     end
 
     if (lastStep["heading"] == 1) then
-        movement.x = movement.x + magnitude
+        x = x + magnitude
     end
     if (lastStep["heading"] == 3) then
-        movement.x = movement.x - magnitude
+        x = x - magnitude
     end
     if (lastStep["heading"] == 4) then
-        movement.y = movement.y + magnitude
+        y = y + magnitude
     end
     if (lastStep["heading"] == 2) then
+        y = y - magnitude
+    end
+    Moved:raise(self, lastStep)
+end
+
+Moved:subscribe(function(movement, step) 
+    local magnitude = 1
+    if (step.step == "backward") then
+        magnitude = -1
+    end
+
+    if (step.heading == 1) then
+        movement.x = movement.x + magnitude
+    end
+    if (step.heading == 3) then
+        movement.x = movement.x - magnitude
+    end
+    if (step.heading == 4) then
+        movement.y = movement.y + magnitude
+    end
+    if (step.heading == 2) then
         movement.y = movement.y - magnitude
     end
 end)
