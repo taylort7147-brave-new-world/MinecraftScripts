@@ -6,7 +6,7 @@ function Movement:new()
     setmetatable(o, self)
     self.__index = self
 
-    self.stepsTake = {}
+    self.stepsTaken = {}
     self.x = 0
     self.y = 0
     self.z = 0
