@@ -1,6 +1,4 @@
 require("turtle/Events")
-require("inspect")
-
 Movement = {}
 function Movement:new()
     o = {}
@@ -91,8 +89,6 @@ function Movement:Down()
 end
 
 Moved:subscribe(function(movement, step) 
-    print(inspect(movement))
-    print(inspect(step))
     local lastStep = movement.stepsTaken[#movement.stepsTaken]
     local magnitude = 1
     if (lastStep["step"] == "backward") then
