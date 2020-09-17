@@ -85,7 +85,7 @@ function Inventory:ChangeSlot(fromIndex, toIndex)
 
     local droppedItem = self:DropSlot(fromIndex)
     if (droppedItem) then
-        self:SelectByIndex(toIndex)
+        turtle.select(toIndex)
         if (self:PickUpItem(droppedItem.name)) then
             return true
         end
