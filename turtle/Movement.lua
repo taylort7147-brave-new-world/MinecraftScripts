@@ -98,16 +98,16 @@ Moved:subscribe(function(movement, step)
     end
 
     if (lastStep["heading"] == 1) then
-        x = x + magnitude
+        movement.x = movement.x + magnitude
     end
     if (lastStep["heading"] == 3) then
-        x = x - magnitude
+        movement.x = movement.x - magnitude
     end
     if (lastStep["heading"] == 4) then
-        y = y + magnitude
+        movement.y = movement.y + magnitude
     end
     if (lastStep["heading"] == 2) then
-        y = y - magnitude
+        movement.y = movement.y - magnitude
     end
 end)
 
