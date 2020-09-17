@@ -42,7 +42,7 @@ function Movement:Forward()
             heading = self.heading
         }
         table.insert(self.stepsTaken, step)
-        self:__adjustCoordinateXY()
+        Moved:raise(self, step)
     end
     return moved
 end
@@ -52,10 +52,10 @@ function Movement:Backward()
     if (moved) then
         local step = {
             step = "backward",
-            heading = heading
+            heading = self.heading
         }
         table.insert(self.stepsTaken, step)
-        self:__adjustCoordinateXY()
+        Moved:raise(self, step)
     end
     return moved
 end
@@ -88,44 +88,45 @@ function Movement:Down()
     return moved
 end
 
-function Movement:__adjustCoordinateXY()
-    local lastStep = self.stepsTaken[#self.stepsTaken]
+-- function Movement:__adjustCoordinateXY()
+--     local lastStep = self.stepsTaken[#self.stepsTaken]
+--     local magnitude = 1
+--     if (lastStep["step"] == "backward") then
+--         magnitude = -1
+--     end
+
+--     if (lastStep["heading"] == 1) then
+--         self.x = self.x + magnitude
+--     end
+--     if (lastStep["heading"] == 3) then
+--         self.x = self.x - magnitude
+--     end
+--     if (lastStep["heading"] == 4) then
+--         self.y = self.y + magnitude
+--     end
+--     if (lastStep["heading"] == 2) then
+--         self.y = self.y - magnitude
+--     end
+--     Moved:raise(self, lastStep)
+-- end
+
+
+Moved:subscribe(function(movement, lastStep) 
     local magnitude = 1
     if (lastStep["step"] == "backward") then
         magnitude = -1
     end
 
     if (lastStep["heading"] == 1) then
-        self.x = self.x + magnitude
-    end
-    if (lastStep["heading"] == 3) then
-        self.x = self.x - magnitude
-    end
-    if (lastStep["heading"] == 4) then
-        self.y = self.y + magnitude
-    end
-    if (lastStep["heading"] == 2) then
-        self.y = self.y - magnitude
-    end
-    Moved:raise(self, lastStep)
-end
-
-Moved:subscribe(function(movement, step) 
-    local magnitude = 1
-    if (step.step == "backward") then
-        magnitude = -1
-    end
-
-    if (step.heading == 1) then
         movement.x = movement.x + magnitude
     end
-    if (step.heading == 3) then
+    if (lastStep["heading"] == 3) then
         movement.x = movement.x - magnitude
     end
-    if (step.heading == 4) then
+    if (lastStep["heading"] == 4) then
         movement.y = movement.y + magnitude
     end
-    if (step.heading == 2) then
+    if (lastStep["heading"] == 2) then
         movement.y = movement.y - magnitude
     end
 end)
