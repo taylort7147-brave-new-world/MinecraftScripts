@@ -91,7 +91,7 @@ end
 
 Moved:subscribe(function(movement, step) 
     print("moved!")
-    local lastStep = movement.stepsTaken[#stepsTaken]
+    local lastStep = movement.stepsTaken[#movement.stepsTaken]
     local magnitude = 1
     if (lastStep["step"] == "backward") then
         magnitude = -1
