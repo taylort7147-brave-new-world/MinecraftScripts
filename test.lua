@@ -17,4 +17,7 @@ print(inspect(items))
 
 inventory:SelectByName("bucket")
 print(inventory:ChangeSlot(1, 15))
+Moved:subscribe(function(movement, step)
+    print(inspect(movement))
+end)
 movement:Forward()
