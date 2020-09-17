@@ -126,3 +126,6 @@ Moved:subscribe(function(movement, step)
     print("No fuel in inventory.")
 end)
 
+return {
+    Movement = Movement
+}
