@@ -72,7 +72,7 @@ function Inventory:DropSlot(slot, amount)
 
     local selectedItem = self:SelectByIndex(slot)
     if (selectedItem) then
-        turtle.drop(amount)
+        turtle.dropDown(amount)
         ItemDropped:raise(self, selectedItem)
     end
     return selectedItem
