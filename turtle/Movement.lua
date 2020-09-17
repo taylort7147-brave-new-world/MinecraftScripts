@@ -1,4 +1,5 @@
 require("turtle/Events")
+require("inspect")
 
 Movement = {}
 function Movement:new()
@@ -78,11 +79,11 @@ end
 function Movement:Down()
     local moved = turtle.down()
     if (moved) then
-        local self = {
+        local step = {
             step = "down",
             heading = heading
         }
-        table.insert(self.stepsTaken, self)
+        table.insert(self.stepsTaken, step)
         Moved:raise(self, step)
         self.z = self.z - 1
     end
@@ -90,7 +91,8 @@ function Movement:Down()
 end
 
 Moved:subscribe(function(movement, step) 
-    print("moved!")
+    print(inspect(movement))
+    print(inspect(step))
     local lastStep = movement.stepsTaken[#movement.stepsTaken]
     local magnitude = 1
     if (lastStep["step"] == "backward") then
