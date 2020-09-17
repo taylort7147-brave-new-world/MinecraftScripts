@@ -98,7 +98,7 @@ function Inventory:PickUpItem(itemName)
                 self:DropSlot(currentSlot)
             end
         else
-            if (not turtle.foward()) then
+            if (not turtle.forward()) then
                 break
             end
         end

@@ -12,6 +12,7 @@ return {
     Moved = Moved,
     Rotated = Rotated,
     BlockInspected = BlockInspected,
+    
     ItemSelected = ItemSelected,
     ItemDropped = ItemDropped,
     ItemPickedUp = ItemPickedUp

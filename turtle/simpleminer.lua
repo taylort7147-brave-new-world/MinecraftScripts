@@ -137,7 +137,6 @@ function Refuel()
 end
 
 function HandleUsefulBlock(blockName)
-
     print("Handing useful block ", blockName)
     if (blockName == "minecraft:lava") then
         if (not SelectItem("minecraft:bucket")) then
