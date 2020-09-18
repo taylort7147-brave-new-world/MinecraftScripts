@@ -17,8 +17,7 @@ end
 function watchOsEvents()
 
     listenForEvent({
-        turtle_inventory = function(stuff, stuff2, stuff3)
-            print(stuff, stuff2, stuff3)
+        turtle_inventory = function()
             InventoryChanged:raise(turtle, null)
         end
     })

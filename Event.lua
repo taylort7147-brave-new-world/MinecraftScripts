@@ -28,6 +28,10 @@ function Event:unsubscribe(index)
 end
 
 function Event:raise(context, data)
+    print(self.type, " was triggered", context, data)
+    if (not self.__subscribers or #self.__subscribers < 1) then
+        return
+    end
     for _, v in pairs(self.__subscribers) do
         v(context, data)
     end
