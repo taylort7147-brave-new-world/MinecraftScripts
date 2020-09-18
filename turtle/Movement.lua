@@ -42,54 +42,68 @@ end
 
 function Movement:Forward()
     local moved = turtle.forward()
+    local step = {
+        step = "forward",
+        heading = self.heading
+    }
     if (moved) then
-        local step = {
-            step = "forward",
-            heading = self.heading
-        }
+
         table.insert(self.stepsTaken, step)
         Moved:raise(self, step)
+    else
+        MoveFailed:raise(self, step)
     end
     return moved
 end
 
 function Movement:Backward()
     local moved = turtle.back()
+    local step = {
+        step = "backward",
+        heading = self.heading
+    }
     if (moved) then
-        local step = {
-            step = "backward",
-            heading = self.heading
-        }
+
         table.insert(self.stepsTaken, step)
         Moved:raise(self, step)
+    else
+        MoveFailed:raise(self, step)
     end
     return moved
 end
 
 function Movement:Up()
     local moved = turtle.up()
+    local step = {
+        step = "up",
+        heading = self.heading
+    }
+
     if (moved) then
-        local step = {
-            step = "up",
-            heading = self.heading
-        }
+
         table.insert(self.stepsTaken, step)
         self.z = self.z + 1
         Moved:raise(self, step)
+    else
+        MoveFailed:raise(self, step)
     end
+
     return moved
 end
 
 function Movement:Down()
     local moved = turtle.down()
+    local step = {
+        step = "down",
+        heading = self.heading
+    }
     if (moved) then
-        local step = {
-            step = "down",
-            heading = self.heading
-        }
+
         table.insert(self.stepsTaken, step)
         self.z = self.z - 1
         Moved:raise(self, step)
+    else
+        MoveFailed:raise(self, step)
     end
     return moved
 end
@@ -99,7 +113,7 @@ function Movement:BackToStart()
     for i = #steps, 1, -1 do
         local step = steps[i]
         local stepHeading = step["heading"]
-        while  self.heading ~= stepHeading do
+        while self.heading ~= stepHeading do
             self:Left()
         end
 

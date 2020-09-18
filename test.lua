@@ -42,6 +42,29 @@ function main()
         digAll()
     end)
 
+    MoveFailed:subscribe(function(_, failedStep)
+        if (failedStep.step == "forward") then
+            digAll()
+            movement:Forward()
+        end
+        if (failedStep.step == "up") then
+            digAll()
+            movement:Up()
+        end
+        if (failedStep.step == "down") then
+            digAll()
+            movement:Down()
+        end
+        if (failedStep.step == "backward") then
+            movement:Right()
+            movement:Right()
+            digAll()
+            movement:Left()
+            movement:Left()
+            movement:Backward()
+        end
+    end)
+
     InventoryChanged:subscribe(function()
         local emptySlots = inventory:GetEmptySlots()
         if (#emptySlots == 0) then
