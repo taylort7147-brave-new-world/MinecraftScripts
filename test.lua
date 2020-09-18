@@ -10,7 +10,7 @@ local movement = Movement:new()
 function digAll()
     while turtle.dig() do
         turtle.digUp()
-        turtle.digDow()
+        turtle.digDown()
     end
 end
 
