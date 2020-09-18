@@ -109,6 +109,9 @@ end
 
 Moved:subscribe(function(movement, lastStep)
     local magnitude = 1
+    if (not lastStep or not lastStep["step"]) then
+        return
+    end
     if (lastStep["step"] == "backward") then
         magnitude = magnitude * -1
     end
