@@ -26,7 +26,7 @@ function Movement:Left()
     if self.heading < 1 then
         self.heading = self.heading + 4
     end
-    Rotated:raise(self, self.heading)
+    -- Rotated:raise(self, self.heading)
     return self.heading
 end
 
@@ -36,7 +36,7 @@ function Movement:Right()
     if self.heading > 4 then
         self.heading = self.heading - 4
     end
-    Rotated:raise(self, self.heading)
+    -- Rotated:raise(self, self.heading)
     return self.heading
 end
 
@@ -100,15 +100,15 @@ function Movement:BackToStart()
         local step = steps[i]
         local stepHeading = step["heading"]
         while not self.heading == stepHeading do
-            self.Left()
+            self:Left()
         end
 
         if (step.step == "backward") then
-            self.Forward()
+            self:Forward()
         end
 
         if (step.step == "forward") then
-            self.Backward()
+            self:Backward()
         end
     end
 end
