@@ -71,11 +71,11 @@ function Movement:Up()
     if (moved) then
         local step = {
             step = "up",
-            heading = heading
+            heading = self.heading
         }
         table.insert(self.stepsTaken, step)
         self.z = self.z + 1
-        Moved(self, step)
+        Moved:raise(self, step)
     end
     return moved
 end
@@ -85,11 +85,11 @@ function Movement:Down()
     if (moved) then
         local step = {
             step = "down",
-            heading = heading
+            heading = self.heading
         }
         table.insert(self.stepsTaken, step)
         self.z = self.z - 1
-        Moved(self, step)
+        Moved:raise(self, step)
     end
     return moved
 end
@@ -99,8 +99,7 @@ function Movement:BackToStart()
     for i = #steps, 1, -1 do
         local step = steps[i]
         local stepHeading = step["heading"]
-        print('need to move the opposite of ', step.step, step.heading)
-        while not self.heading == stepHeading do
+        while  self.heading ~= stepHeading do
             self:Left()
         end
 
