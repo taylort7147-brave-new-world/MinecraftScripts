@@ -91,6 +91,7 @@ function Inventory:DropAllOf(name)
         if (v.name:match(itemName)) then
             self:DropSlot(i)
         end
+    end
 end
 
 return {
