@@ -2,7 +2,8 @@ require("turtle/Events")
 Inventory = {}
 
 local itemPriority = {
-    ['minecraft:bucket'] = 40
+    ['minecraft:bucket'] = 100,
+    ['minecraft:diamond'] = 100,
 }
 
 function Inventory:new(priority)
@@ -85,26 +86,11 @@ function Inventory:ChangeSlot(fromIndex, toIndex)
     turtle.transferTo(toIndex)
 end
 
-function Inventory:PickUpItem(itemName)
-    local foundAtLeastOne = false
-    for i = 0, 3, 1 do
-        if (turtle.suck()) then
-            local currentSlot = turtle.getSelectedSlot()
-            local pickedUpItem = self:SelectByIndex(currentSlot)
-            if (pickedUpItem and pickedUpItem.name:match(itemName)) then
-                foundAtLeastOne = true
-                ItemPickedUp:raise(self, pickedUpItem)
-            else
-                self:DropSlot(currentSlot)
-            end
-        else
-            if (not turtle.forward()) then
-                break
-            end
+function Inventory:DropAllOf(name)
+    for i, v in pairs(self:GetItems()) do
+        if (v.name:match(itemName)) then
+            self:DropSlot(i)
         end
-
-    end
-    return foundAtLeastOne
 end
 
 return {
