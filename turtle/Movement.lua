@@ -47,7 +47,6 @@ function Movement:Forward()
         heading = self.heading
     }
     if (moved) then
-
         table.insert(self.stepsTaken, step)
         Moved:raise(self, step)
     else
@@ -63,7 +62,6 @@ function Movement:Backward()
         heading = self.heading
     }
     if (moved) then
-
         table.insert(self.stepsTaken, step)
         Moved:raise(self, step)
     else
@@ -80,7 +78,6 @@ function Movement:Up()
     }
 
     if (moved) then
-
         table.insert(self.stepsTaken, step)
         self.z = self.z + 1
         Moved:raise(self, step)
@@ -98,7 +95,6 @@ function Movement:Down()
         heading = self.heading
     }
     if (moved) then
-
         table.insert(self.stepsTaken, step)
         self.z = self.z - 1
         Moved:raise(self, step)

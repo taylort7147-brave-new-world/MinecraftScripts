@@ -11,12 +11,12 @@ end
 
 function Event:subscribe(handler)
     local currentlyRunning = false;
-    table.insert(self.__subscribers, function(context, data, publisher)
+    table.insert(self.__subscribers, function(context, data)
         if (currentlyRunning) then
             return
         end
         currentlyRunning = true
-        handler(context, data, publisher)
+        handler(context, data)
         currentlyRunning = false
     end)
     return #self.__subscribers
@@ -27,9 +27,9 @@ function Event:unsubscribe(index)
     return #self.__subscribers
 end
 
-function Event:raise(context, data, publisher)
+function Event:raise(context, data)
     for _, v in pairs(self.__subscribers) do
-        v(context, data, publisher)
+        v(context, data)
     end
 end
 

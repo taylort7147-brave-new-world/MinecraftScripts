@@ -3,6 +3,7 @@ package.path = package.path .. ";../?.lua"
 require("turtle/Inventory")
 require("turtle/Movement")
 require("turtle/Events")
+local inspect = require("inspect")
 
 function listenForEvent(functionTbl)
     while true do
@@ -42,7 +43,9 @@ function main()
         digAll()
     end)
 
-    MoveFailed:subscribe(function(_, failedStep)
+    MoveFailed:subscribe(function(movement, failedStep)
+        print(inspect(movement.steps[#movement.steps]))
+        print(inspect(failedStep))
         if (failedStep.step == "forward") then
             digAll()
             movement:Forward()
