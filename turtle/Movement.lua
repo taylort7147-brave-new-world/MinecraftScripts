@@ -1,3 +1,9 @@
+package.path = package.path .. ";../../../?.lua"
+package.path = package.path .. ";../../?.lua"
+package.path = package.path .. ";../?.lua"
+
+local inspect = require("inspect")
+
 require("turtle/Events")
 Movement = {}
 function Movement:new()
@@ -108,6 +114,7 @@ function Movement:BackToStart()
 end
 
 Moved:subscribe(function(movement, lastStep)
+    print(inspect(movement), inspect(lastStep))
     local magnitude = 1
     if (not lastStep or not lastStep["step"]) then
         return
