@@ -10,20 +10,25 @@ function Event:new(name)
 end
 
 function Event:subscribe(handler)
+    if (self.__subscribers[handler]) then
+        print("already registered this handler")
+        return
+    end
+
     local currentlyRunning = false;
-    table.insert(self.__subscribers, function(context, data)
+    self.__subscribers[handler] = function(context, data)
         if (currentlyRunning) then
             return
         end
         currentlyRunning = true
         handler(context, data)
         currentlyRunning = false
-    end)
+    end
     return #self.__subscribers
 end
 
-function Event:unsubscribe(index)
-    table.remove(self.__subscribers, index)
+function Event:unsubscribe(handler)
+    table.remove(self.__subscribers, handler)
     return #self.__subscribers
 end
 

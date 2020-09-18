@@ -53,6 +53,7 @@ function handleMove()
 end
 
 function main()
+    print("starting up")
     local movement = Movement:new()
     local inventory = Inventory:new({
         ['iron'] = 100,
