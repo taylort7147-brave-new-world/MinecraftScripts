@@ -86,4 +86,4 @@ function main()
     end
 end
 
-parallel.waitForAll(watchOsEvents, main)
+parallel.waitForAny(watchOsEvents, main)
