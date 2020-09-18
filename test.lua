@@ -23,6 +23,35 @@ function watchOsEvents()
     })
 end
 
+function handleFailedMove(movement, failedStep)
+    print(inspect(movement.steps[#movement.steps]))
+    print(inspect(failedStep))
+    if (failedStep.step == "forward") then
+        digAll()
+        movement:Forward()
+    end
+    if (failedStep.step == "up") then
+        digAll()
+        movement:Up()
+    end
+    if (failedStep.step == "down") then
+        digAll()
+        movement:Down()
+    end
+    if (failedStep.step == "backward") then
+        movement:Right()
+        movement:Right()
+        digAll()
+        movement:Left()
+        movement:Left()
+        movement:Backward()
+    end
+end
+
+function handleMove()
+    digAll()
+end
+
 function main()
     local movement = Movement:new()
     local inventory = Inventory:new({
@@ -38,34 +67,8 @@ function main()
         end
     end
 
-    Moved:subscribe(function()
-        digAll()
-    end)
-
-    MoveFailed:subscribe(function(movement, failedStep)
-        print(inspect(movement.steps[#movement.steps]))
-        print(inspect(failedStep))
-        if (failedStep.step == "forward") then
-            digAll()
-            movement:Forward()
-        end
-        if (failedStep.step == "up") then
-            digAll()
-            movement:Up()
-        end
-        if (failedStep.step == "down") then
-            digAll()
-            movement:Down()
-        end
-        if (failedStep.step == "backward") then
-            movement:Right()
-            movement:Right()
-            digAll()
-            movement:Left()
-            movement:Left()
-            movement:Backward()
-        end
-    end)
+    Moved:subscribe(handleMove)
+    MoveFailed:subscribe(handleFailedMove)
 
     InventoryChanged:subscribe(function()
         local emptySlots = inventory:GetEmptySlots()
