@@ -67,13 +67,13 @@ function Inventory:SelectByIndex(index)
 end
 
 function Inventory:DropSlot(slot, amount)
+    print("dropping ", slot)
     if (not slot) then
         return nil
     end
     local selectedItem = self:SelectByIndex(slot)
     if (selectedItem) then
         turtle.drop(amount)
-        ItemDropped:raise(self, selectedItem)
     end
     return selectedItem
 end
@@ -91,7 +91,7 @@ function Inventory:DropAllOf(name)
         return
     end
     for i, v in pairs(self:GetItems()) do
-        if (v.name:match(itemName)) then
+        if (v.name:match(name)) then
             self:DropSlot(i)
         end
     end
@@ -100,10 +100,11 @@ end
 function Inventory:DropLowestPriorityItem()
     local lowestPriority
     for i, v in pairs(self:GetItems()) do
-        if (v.priority > lowestPriority and v.priority < 100) then
+        if (not lowestPriority or v.priority > lowestPriority.priority and v.priority < 100) then
             lowestPriority = v
         end
     end
+    print(lowestPriority.name)
     self:DropAllOf(lowestPriority.name)
     print("dropped ", lowestPriority.name, " to save space")
 end
@@ -115,6 +116,7 @@ function Inventory:GetEmptySlots()
             emptySlots[i] = i
         end
     end
+    return emptySlots
 end
 
 return {

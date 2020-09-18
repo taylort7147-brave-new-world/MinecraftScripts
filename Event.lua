@@ -10,7 +10,15 @@ function Event:new(name)
 end
 
 function Event:subscribe(handler)
-    table.insert(self.__subscribers, handler)
+    local currentlyRunning = false;
+    table.insert(self.__subscribers, function(context, data, publisher)
+        if (currentlyRunning) then
+            return
+        end
+        currentlyRunning = true
+        handler(context, data, publisher)
+        currentlyRunning = false
+    end)
     return #self.__subscribers
 end
 

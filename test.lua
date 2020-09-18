@@ -47,7 +47,6 @@ function main()
         if (#emptySlots == 0) then
             inventory:DropLowestPriorityItem()
         end
-
     end)
 
     for _ = 0, 5, 1 do
