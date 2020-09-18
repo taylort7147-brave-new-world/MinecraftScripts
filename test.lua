@@ -7,9 +7,19 @@ require("turtle/Events")
 local inventory = Inventory:new()
 local movement = Movement:new()
 
-for i = 0, 200, 1 do
-    movement:Forward()
-    print(movement.x, movement.y, movement.z, movement.heading)
-    movement:Backward()
-    print(movement.x, movement.y, movement.z, movement.heading)
+function digAll()
+    while turtle.dig() do
+        turtle.digUp()
+        turtle.digDow()
+    end
 end
+
+Moved:subscribe(function()
+    digAll()
+end)
+
+for i=0, 50, 1 do
+    if(not movement:Forward()) then digAll() end
+end
+
+movement:BackToStart()
