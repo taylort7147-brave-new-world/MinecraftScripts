@@ -99,6 +99,7 @@ function Movement:BackToStart()
     for i = #steps, 1, -1 do
         local step = steps[i]
         local stepHeading = step["heading"]
+        print('need to move the opposite of ', step.step, step.heading)
         while not self.heading == stepHeading do
             self:Left()
         end
@@ -109,6 +110,14 @@ function Movement:BackToStart()
 
         if (step.step == "forward") then
             self:Backward()
+        end
+
+        if (step.step == "up") then
+            self:Down()
+        end
+
+        if (step.step == "down") then
+            self:Up()
         end
     end
 end
