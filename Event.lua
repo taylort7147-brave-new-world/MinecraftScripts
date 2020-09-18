@@ -19,9 +19,9 @@ function Event:unsubscribe(index)
     return #self.__subscribers
 end
 
-function Event:raise(caller, data)
+function Event:raise(context, data, publisher)
     for _, v in pairs(self.__subscribers) do
-        v(caller, data)
+        v(context, data, publisher)
     end
 end
 

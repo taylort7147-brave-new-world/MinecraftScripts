@@ -15,12 +15,18 @@ function turtle:forward()
 end
 
 function turtle:back()
-    local success = globalTurtle and globalTurtle.back() or randomChoice()
-    return success
+    if (globalTurtle) then
+        return lobalTurtle.back()
+    else
+        return randomChoice()
+    end
 end
 
 function turtle:turnLeft()
-    return globalTurtle and globalTurtle.turnLeft() or nil
+    if(globalTurtle) then
+        return globalTurtle.turnLeft()
+    end
+    return nil
 end
 
 function turtle:turnRight()
@@ -28,11 +34,21 @@ function turtle:turnRight()
 end
 
 function turtle:up()
-    local success = globalTurtle and globalTurtle.up() or randomChoice()
-    return success
+    if (globalTurtle) then
+        return globalTurtle.up()
+    else
+        return randomChoice()
+    end
 end
 
 function turtle:down()
     local success = globalTurtle and globalTurtle.down() or randomChoice()
     return success
 end
+
+function turtle:getItemDetail(index)
+end
+
+
+
+

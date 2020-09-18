@@ -10,6 +10,6 @@ local movement = Movement:new()
 for i = 0, 200, 1 do
     movement:Forward()
     print(movement.x, movement.y, movement.z, movement.heading)
-    movement:BackWard()
+    movement:Backward()
     print(movement.x, movement.y, movement.z, movement.heading)
 end

@@ -88,33 +88,33 @@ function Movement:Down()
     return moved
 end
 
--- function Movement:__adjustCoordinateXY()
---     local lastStep = self.stepsTaken[#self.stepsTaken]
---     local magnitude = 1
---     if (lastStep["step"] == "backward") then
---         magnitude = -1
---     end
+function Movement:BackToStart()
+    local steps = {table.unpack(self.stepsTaken)}
+    for i =#steps, 1, -1 do
+        local step = steps[i]
+        if(step.heading == 1 and step.step == "forward" or step.heading == 3 and step.step = "backward") then
+            self.Backward()
+        end
+        local step = steps[i]
+        if(step.heading == 1 and step.step == "backward" or step.heading == 3 and step.step = "forward") then
+            self.Forward()
+        end
 
---     if (lastStep["heading"] == 1) then
---         self.x = self.x + magnitude
---     end
---     if (lastStep["heading"] == 3) then
---         self.x = self.x - magnitude
---     end
---     if (lastStep["heading"] == 4) then
---         self.y = self.y + magnitude
---     end
---     if (lastStep["heading"] == 2) then
---         self.y = self.y - magnitude
---     end
---     Moved:raise(self, lastStep)
--- end
+        if(step.heading == 2 and step.step == "forward" or step.heading == 4 and step.step = "backward") then
+            self.Backward()
+        end
+        local step = steps[i]
+        if(step.heading == 1 and step.step == "backward" or step.heading == 3 and step.step = "forward") then
+            self.Forward()
+        end
 
+    end
+end
 
 Moved:subscribe(function(movement, lastStep) 
     local magnitude = 1
     if (lastStep["step"] == "backward") then
-        magnitude = -1
+        magnitude = magnitude * -1
     end
 
     if (lastStep["heading"] == 1) then
