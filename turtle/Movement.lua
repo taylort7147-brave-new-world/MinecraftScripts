@@ -90,28 +90,24 @@ end
 
 function Movement:BackToStart()
     local steps = {table.unpack(self.stepsTaken)}
-    for i =#steps, 1, -1 do
+    for i = #steps, 1, -1 do
         local step = steps[i]
-        if(step.heading == 1 and step.step == "forward" or step.heading == 3 and step.step = "backward") then
-            self.Backward()
+        local stepHeading = step["heading"]
+        while not self.heading == stepHeading do
+            self.Left()
         end
-        local step = steps[i]
-        if(step.heading == 1 and step.step == "backward" or step.heading == 3 and step.step = "forward") then
+
+        if (step.step == "backward") then
             self.Forward()
         end
 
-        if(step.heading == 2 and step.step == "forward" or step.heading == 4 and step.step = "backward") then
+        if (step.step == "forward") then
             self.Backward()
         end
-        local step = steps[i]
-        if(step.heading == 1 and step.step == "backward" or step.heading == 3 and step.step = "forward") then
-            self.Forward()
-        end
-
     end
 end
 
-Moved:subscribe(function(movement, lastStep) 
+Moved:subscribe(function(movement, lastStep)
     local magnitude = 1
     if (lastStep["step"] == "backward") then
         magnitude = magnitude * -1
@@ -131,7 +127,7 @@ Moved:subscribe(function(movement, lastStep)
     end
 end)
 
-Moved:subscribe(function(movement, step) 
+Moved:subscribe(function(movement, step)
     for i = 1, 16, 1 do
         local currentFuel = turtle.getFuelLevel()
         if (currentFuel > 0) then
