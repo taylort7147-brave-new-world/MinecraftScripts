@@ -25,7 +25,12 @@ end
 
 function main()
     local movement = Movement:new()
-
+    local inventory = Inventory:new({
+        ['iron'] = 100,
+        ['diamond'] = 100,
+        ['coal'] = 100,
+        ['uranium'] = 100
+    })
     function digAll()
         while turtle.dig() do
             turtle.digUp()
@@ -38,10 +43,15 @@ function main()
     end)
 
     InventoryChanged:subscribe(function()
-        print("inventory changed!")
+        local emptySlots = inventory:GetEmptySlots()
+        if (#emptySlots == 0) then
+            inventory:DropLowestPriorityItem()
+        end
+
     end)
 
     for _ = 0, 5, 1 do
+        movement = Movement:new()
         for i = 0, 50, 1 do
             if (not movement:Forward()) then
                 digAll()
@@ -54,4 +64,4 @@ function main()
     end
 end
 
-parrallel.waitForAll(watchOsEvents, main)
+parallel.waitForAll(watchOsEvents, main)

@@ -3,7 +3,7 @@ Inventory = {}
 
 local itemPriority = {
     ['minecraft:bucket'] = 100,
-    ['minecraft:diamond'] = 100,
+    ['minecraft:diamond'] = 100
 }
 
 function Inventory:new(priority)
@@ -87,9 +87,32 @@ function Inventory:ChangeSlot(fromIndex, toIndex)
 end
 
 function Inventory:DropAllOf(name)
+    if (not name) then
+        return
+    end
     for i, v in pairs(self:GetItems()) do
         if (v.name:match(itemName)) then
             self:DropSlot(i)
+        end
+    end
+end
+
+function Inventory:DropLowestPriorityItem()
+    local lowestPriority
+    for i, v in pairs(self:GetItems()) do
+        if (v.priority > lowestPriority and v.priority < 100) then
+            lowestPriority = v
+        end
+    end
+    self:DropAllOf(lowestPriority.name)
+    print("dropped ", lowestPriority.name, " to save space")
+end
+
+function Inventory:GetEmptySlots()
+    local emptySlots = {}
+    for i = 1, 16, 1 do
+        if (not turtle.getItemDetail(i)) then
+            emptySlots[i] = i
         end
     end
 end
