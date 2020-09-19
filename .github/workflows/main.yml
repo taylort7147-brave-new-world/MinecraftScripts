@@ -28,21 +28,12 @@ jobs:
           name: cc-environment
           path: datapacks/cc-environment
       
-      - uses: actions/download-artifact@v2
-        id: "artifact-download"
+      - uses: montudor/action-zip@v0.1.0
         with:
-          name: cc-environment
-          path: artifacts
-      
-      - name: Display structure of downloaded files
-        run: ls -R
+          args: zip -qq -r artifacts/cc-environment.zip datapacks/cc-environment/*
 
-
-      - name: 'Echo download path'
-        run: echo ${{ steps.artifact-download.outputs.download-path }}
-      
-      - name: 'List download path'
-        run: ls ${{ steps.artifact-download.outputs.download-path }}
+      - name: 'List artifact path'
+        run: ls artifacts
       
       - name: Upload datapack to server
         uses: appleboy/scp-action@master
@@ -51,5 +42,5 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "${{ steps.artifact-download.outputs.download-path }}/cc-environment.zip"
+          source: "artifacts/cc-environment.zip"
           target: "world/datapacks"
