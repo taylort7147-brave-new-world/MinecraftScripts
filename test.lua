@@ -24,19 +24,20 @@ function watchOsEvents()
 end
 
 function handleFailedMove(movement, failedStep)
-    print(inspect(movement.steps[#movement.steps]))
-    print(inspect(failedStep))
     if (failedStep.step == "forward") then
         digAll()
         movement:Forward()
+        digAll()
     end
     if (failedStep.step == "up") then
         digAll()
         movement:Up()
+        digAll()
     end
     if (failedStep.step == "down") then
         digAll()
         movement:Down()
+        digAll()
     end
     if (failedStep.step == "backward") then
         movement:Right()
@@ -45,6 +46,7 @@ function handleFailedMove(movement, failedStep)
         movement:Left()
         movement:Left()
         movement:Backward()
+        digAll()
     end
 end
 
@@ -53,6 +55,7 @@ function handleMove()
 end
 
 function handleInventoryChange()
+    print("handling inventory changed")
     for i = 0, 16, 1 do
         inventory:DropLowestPriorityItem()
     end
