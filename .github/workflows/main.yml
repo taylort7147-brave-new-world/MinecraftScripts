@@ -38,16 +38,14 @@ jobs:
         run: ls -R
 
       - name: 'Echo download path'
-        run: echo ${{steps.artifact-download.outputs.download-path}}
-          
-                
-      
-      # - name: Upload datapack to server
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     host: ${{ secrets.SFTP_HOST }}
-      #     username: ${{ secrets.SFTP_USERNAME }}
-      #     password: ${{ secrets.SFTP_PASSWORD }}
-      #     port: ${{ secrets.SFTP_PORT }}
-      #     source: "${{ steps.artifact-download.outputs.download-path }}/cc-environment.zip"
-      #     target: "world/datapacks"
+        run: echo ${{ steps.artifact-download.outputs.download-path }}
+
+      - name: Upload datapack to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          source: "${{ steps.artifact-download.outputs.download-path }}/cc-environment.zip"
+          target: "world/datapacks"
