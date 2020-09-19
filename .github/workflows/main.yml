@@ -28,8 +28,8 @@ jobs:
           name: cc-environment
           path: datapacks/cc-environment
       
-     - name: 'Create artifact directory'
-       run: mkdir artifacts
+      - name: 'Create artifact directory'
+        run: mkdir artifacts
 
       - uses: montudor/action-zip@v0.1.0
         with:
