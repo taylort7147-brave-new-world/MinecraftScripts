@@ -30,7 +30,7 @@ jobs:
       
       - uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r artifacts/cc-environment.zip datapacks/cc-environment/*
+          args: zip -qq -r artifacts/cc-environment.zip . -i datapacks/cc-environment/*
 
       - name: 'List artifact path'
         run: ls artifacts
