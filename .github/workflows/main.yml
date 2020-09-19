@@ -28,6 +28,13 @@ jobs:
           name: cc-environment
           path: datapacks/cc-environment
       
+      - uses: actions/download-artifact@v2
+        with:
+          name: cc-environment
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+                
       - name: Upload datapack to server
         uses: appleboy/scp-action@master
         with:
@@ -35,5 +42,5 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "cc-environment"
+          source: "cc-environment.zip"
           target: "world/datapacks"
