@@ -52,6 +52,12 @@ function handleMove()
     digAll()
 end
 
+function handleInventoryChange()
+    for i = 0, 16, 1 do
+        inventory:DropLowestPriorityItem()
+    end
+end
+
 function main()
     print("starting up")
     local movement = Movement:new()
@@ -59,7 +65,8 @@ function main()
         ['iron'] = 100,
         ['diamond'] = 100,
         ['coal'] = 100,
-        ['uranium'] = 100
+        ['uranium'] = 100,
+        ['emerald'] = 100
     })
     function digAll()
         while turtle.dig() do
@@ -70,17 +77,11 @@ function main()
 
     Moved:subscribe(handleMove)
     MoveFailed:subscribe(handleFailedMove)
-
-    InventoryChanged:subscribe(function()
-        local emptySlots = inventory:GetEmptySlots()
-        if (#emptySlots == 0) then
-            inventory:DropLowestPriorityItem()
-        end
-    end)
+    InventoryChanged:subscribe(handleInventoryChange)
 
     for _ = 0, 5, 1 do
         movement = Movement:new()
-        for i = 0, 50, 1 do
+        for i = 0, 10, 1 do
             if (not movement:Forward()) then
                 digAll()
             end

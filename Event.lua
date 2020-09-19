@@ -33,7 +33,6 @@ function Event:unsubscribe(handler)
 end
 
 function Event:raise(context, data)
-    print(self.type, " was triggered", context, data)
     if (not self.__subscribers or #self.__subscribers < 1) then
         return
     end

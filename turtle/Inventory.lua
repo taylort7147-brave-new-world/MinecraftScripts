@@ -100,7 +100,7 @@ end
 function Inventory:DropLowestPriorityItem()
     local lowestPriority
     for i, v in pairs(self:GetItems()) do
-        if (not lowestPriority or v.priority > lowestPriority.priority and v.priority < 100) then
+        if (not lowestPriority or v.priority < lowestPriority.priority and v.priority < 100) then
             lowestPriority = v
         end
     end
