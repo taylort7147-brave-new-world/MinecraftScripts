@@ -30,6 +30,7 @@ jobs:
       
       - uses: actions/download-artifact@v2
         with:
+          id: "artifact-download"
           name: cc-environment
           
       - name: Display structure of downloaded files
@@ -42,5 +43,5 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "cc-environment.zip"
+          source: "${{ steps.artifact-download.outputs.download-path }}/cc-environment.zip"
           target: "world/datapacks"
