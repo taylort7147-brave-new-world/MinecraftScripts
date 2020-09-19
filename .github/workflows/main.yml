@@ -34,7 +34,7 @@ jobs:
           name: cc-environment
           path: artifacts
       
-          - name: Display structure of downloaded files
+      - name: Display structure of downloaded files
         run: ls -R
 
       - name: 'Echo download path'
