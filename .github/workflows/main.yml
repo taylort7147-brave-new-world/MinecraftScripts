@@ -39,7 +39,7 @@ jobs:
         run: ls artifacts
 
       - name: Upload datapack to server
-        run: scp -P ${{ secrets.SFTP_PORT }} artifacts/cc-environment.zip ${{ secrets.SFTP_HOST }}/world/datapacks/
+        run: scp -P ${{ secrets.SFTP_PORT }} artifacts/cc-environment.zip ${{ secrets.SFTP_USESRNAME}}@${{ secrets.SFTP_HOST }}/world/datapacks/
 
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
