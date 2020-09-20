@@ -47,6 +47,7 @@ jobs:
           ftp-server: sftp://${{ secrets.SFTP_HOST}}:${{ secrets.SFTP_PORT }}/world/datapacks/
           ftp-username: ${{ secrets.SFTP_USERNAME }}
           ftp-password: ${{ secrets.SFTP_PASSWORD }}
+          git-ftp-args: --insecure
           local-dir: artifacts/
           
       - name: Upload datapack to server
